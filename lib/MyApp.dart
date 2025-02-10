@@ -1,3 +1,4 @@
+import 'package:bmi_calculator2/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator2/CalculateBMI.dart';
 import 'package:sizer/sizer.dart';
@@ -19,21 +20,21 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           appBarTheme: AppBarTheme(
-            color: Colors.blue,
-            centerTitle: true,
-            foregroundColor: Colors.white,
+            centerTitle: false,
+            backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+            foregroundColor: Colors.black87,
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+              backgroundColor: Color.fromRGBO(66, 199, 142, 1),
               foregroundColor: Colors.white,
               elevation: 4.0,
             ),
           ),
         ),
-        title: '1st Practice App',
+        title: 'BMI Calculator 2',
         debugShowCheckedModeBanner: false,
-        home: CalculateBMI(),
+        home: HomePage(),
       );
     });
   }
