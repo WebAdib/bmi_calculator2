@@ -16,12 +16,9 @@ class MyApp extends StatelessWidget {
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
         theme: ThemeData(
-          primaryColor: Colors.blue,
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
           appBarTheme: AppBarTheme(
-            centerTitle: false,
             backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+            centerTitle: false,
             foregroundColor: Colors.black87,
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
