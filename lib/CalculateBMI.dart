@@ -268,11 +268,37 @@ class _CalculateBMIState extends State<CalculateBMI> {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(12),
                           ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('8 Aug, 2025',
+                                    style: TextStyle(fontSize: 22)),
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.calendar_month_outlined,
+                                  color: Colors.grey,
+                                  size: 35,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ],
+              ),
+              ///////////////////////////////////////////////////// Calculate Button
+              SizedBox(height: 30),
+              SizedBox(
+                height: 60,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text('CALCULATE', style: TextStyle(fontSize: 26)),
+                ),
               ),
             ],
           ),
