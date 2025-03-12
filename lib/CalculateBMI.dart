@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wheel_slider/wheel_slider.dart';
 import 'widgets/CustomPointer.dart';
+import 'widgets/height_weight_box.dart';
 
 class CalculateBMI extends StatefulWidget {
   const CalculateBMI({super.key});
@@ -11,6 +12,13 @@ class CalculateBMI extends StatefulWidget {
 
 class _CalculateBMIState extends State<CalculateBMI> {
   int selectedAge = 24; // Initial selected value for age
+  String selectedGender = '';
+
+  void selectGender(String gender) {
+    setState(() {
+      selectedGender = gender;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,185 +30,252 @@ class _CalculateBMIState extends State<CalculateBMI> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            //////////////////////////////////////////////////////////////////// Name Input
-            TextField(
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-              cursorColor: Color.fromRGBO(66, 199, 142, 1),
-              decoration: InputDecoration(
-                hintText: 'Your Name',
-                hintStyle: TextStyle(fontSize: 16, color: Colors.black54),
-                prefixIcon: Icon(Icons.person, color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: BorderSide(color: Colors.grey),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              //////////////////////////////////////////////////////////////////// Name Input
+              TextField(
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: BorderSide(color: Colors.grey.withOpacity(0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: BorderSide(
-                      color: Color.fromRGBO(66, 199, 142, 0), width: 2.0),
-                ),
-                filled: true,
-                fillColor: Colors.white,
-              ),
-            ),
-            SizedBox(height: 30),
-
-            //////////////////////////////////////////////////////////////////// Weight & Height Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text('Weight (kg)', style: TextStyle(fontSize: 16)),
-                      SizedBox(height: 10),
-                      TextField(
-                        keyboardType: TextInputType.number,
-                        style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                        cursorColor: Color.fromRGBO(66, 199, 142, 1),
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 5.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide:
-                                BorderSide(color: Colors.grey.withOpacity(0)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide: BorderSide(
-                                color: Color.fromRGBO(66, 199, 142, 0),
-                                width: 2.0),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                        ),
-                      ),
-                    ],
+                cursorColor: Color.fromRGBO(66, 199, 142, 1),
+                decoration: InputDecoration(
+                  hintText: 'Your Name',
+                  hintStyle: TextStyle(fontSize: 16, color: Colors.black54),
+                  prefixIcon: Icon(Icons.person, color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide(color: Colors.grey),
                   ),
-                ),
-                SizedBox(width: 30),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text('Height (cm)', style: TextStyle(fontSize: 16)),
-                      SizedBox(height: 10),
-                      TextField(
-                        keyboardType: TextInputType.number,
-                        style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                        cursorColor: Color.fromRGBO(66, 199, 142, 1),
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 5.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide:
-                                BorderSide(color: Colors.grey.withOpacity(0)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide: BorderSide(
-                                color: Color.fromRGBO(66, 199, 142, 0),
-                                width: 2.0),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                        ),
-                      ),
-                    ],
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide(color: Colors.grey.withOpacity(0)),
                   ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide(
+                        color: Color.fromRGBO(66, 199, 142, 0), width: 2.0),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
-              ],
-            ),
-            SizedBox(height: 30),
+              ),
+              SizedBox(height: 30),
 
-            //////////////////////////////////////////////////////////////////// Age Slider Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text('Age', style: TextStyle(fontSize: 16)),
-                      SizedBox(height: 10),
-                      Container(
-                        height: 70,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
+              //////////////////////////////////////////////////////////////////// Weight & Height Section
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  HeightWeightBox(),
+                  SizedBox(width: 30),
+                  HeightWeightBox()
+                ],
+              ),
+              SizedBox(height: 20),
+
+              //////////////////////////////////////////////////////////////////// Age Slider Section
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text('Age', style: TextStyle(fontSize: 16)),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 70,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Stack(
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  WheelSlider.number(
+                                    onValueChanged: (value) {
+                                      setState(() {
+                                        selectedAge = value;
+                                      });
+                                    },
+                                    totalCount: 100,
+                                    initValue: selectedAge,
+                                    currentIndex: selectedAge,
+                                    perspective: 0.004,
+                                    horizontal: true,
+                                    showPointer: false,
+                                    scrollPhysics:
+                                        const BouncingScrollPhysics(),
+                                    hapticFeedbackType:
+                                        HapticFeedbackType.lightImpact,
+                                    selectedNumberStyle: TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold,
+                                      //color: Colors.green,
+                                    ),
+                                    unSelectedNumberStyle: TextStyle(
+                                      fontSize: 22,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Positioned(
+                                child: CustomPointer(
+                                  size: 18,
+                                  color: Color.fromRGBO(66, 199, 142, 1),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        child: Stack(
-                          alignment: Alignment.bottomCenter,
-                          children: [
-                            Column(
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              //////////////////////////////////////////////////////////////// Gender selection
+              SizedBox(height: 30),
+              Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () => selectGender('Male'),
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: 120,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                WheelSlider.number(
-                                  onValueChanged: (value) {
-                                    setState(() {
-                                      selectedAge = value;
-                                    });
-                                  },
-                                  totalCount: 100,
-                                  initValue: selectedAge,
-                                  currentIndex: selectedAge,
-                                  perspective: 0.004,
-                                  horizontal: true,
-                                  showPointer: false,
-                                  scrollPhysics: const BouncingScrollPhysics(),
-                                  hapticFeedbackType:
-                                      HapticFeedbackType.lightImpact,
-                                  selectedNumberStyle: TextStyle(
-                                    fontSize: 26,
+                                Icon(
+                                  Icons.male,
+                                  size: 50,
+                                  color: Colors.black,
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  'Male',
+                                  style: TextStyle(
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    //color: Colors.green,
-                                  ),
-                                  unSelectedNumberStyle: TextStyle(
-                                    fontSize: 22,
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ],
                             ),
+                          ),
+                          if (selectedGender == 'Male')
                             Positioned(
-                              child: CustomPointer(
-                                size: 18,
-                                color: Color.fromRGBO(66, 199, 142, 1),
+                              top: 8, // Adjusted to be inside the container
+                              right: 8, // Adjusted to be inside the container
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromRGBO(66, 199, 142, 1),
+                                radius: 12,
+                                child: Icon(
+                                  Icons.check,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
                               ),
                             ),
-                          ],
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  SizedBox(width: 30),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () => selectGender('Female'),
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: 120,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.female,
+                                  size: 50,
+                                  color: Colors.black,
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  'Female',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          if (selectedGender == 'Female')
+                            Positioned(
+                              top: 8,
+                              right: 8,
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromRGBO(66, 199, 142, 1),
+                                radius: 12,
+                                child: Icon(
+                                  Icons.check,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              //////////////////////////////////////////////////////////////////// Time Section
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text('Time', style: TextStyle(fontSize: 16)),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 70,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
